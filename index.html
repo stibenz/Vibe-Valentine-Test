@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>💕 Will You Be Mine? 💕</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Nunito:wght@400;600;700;800&display=swap"
+    rel="stylesheet" />
+  <style>
+    /* ── Reset & Base ── */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: 'Nunito', sans-serif;
+      background: linear-gradient(135deg, #ffe0ec 0%, #ffc2d4 40%, #ffb3c6 70%, #ff8fab 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* ── Floating Hearts Background ── */
+    .hearts-bg {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .heart-float {
+      position: absolute;
+      bottom: -60px;
+      animation: floatUp linear infinite;
+      opacity: 0;
+      font-size: 1.5rem;
+      filter: drop-shadow(0 0 6px rgba(255, 100, 130, 0.4));
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) rotate(0deg) scale(0.8);
+        opacity: 0;
+      }
+
+      10% {
+        opacity: 0.8;
+      }
+
+      90% {
+        opacity: 0.5;
+      }
+
+      100% {
+        transform: translateY(-110vh) rotate(360deg) scale(1.2);
+        opacity: 0;
+      }
+    }
+
+    /* ── Main Card ── */
+    .card {
+      position: relative;
+      z-index: 10;
+      background: rgba(255, 255, 255, 0.55);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 2px solid rgba(255, 255, 255, 0.75);
+      border-radius: 32px;
+      padding: 48px 56px 44px;
+      max-width: 480px;
+      width: 90vw;
+      text-align: center;
+      box-shadow:
+        0 8px 40px rgba(255, 100, 130, 0.25),
+        0 2px 8px rgba(255, 100, 130, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+      animation: cardPop 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+    }
+
+    @media (max-width: 480px) {
+      .card {
+        padding: 36px 24px 32px;
+      }
+    }
+
+    @keyframes cardPop {
+      from {
+        opacity: 0;
+        transform: scale(0.6) translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+    }
+
+    /* ── Bear Character ── */
+    .bear-wrap {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 20px;
+      animation: bearBob 2.4s ease-in-out infinite;
+    }
+
+    @keyframes bearBob {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+
+    /* SVG Bear */
+    .bear-svg {
+      width: 130px;
+      height: 130px;
+      filter: drop-shadow(0 6px 16px rgba(200, 80, 110, 0.25));
+    }
+
+    /* Blinking eyes animation */
+    .bear-eye {
+      animation: blink 3.5s ease-in-out infinite;
+    }
+
+    @keyframes blink {
+
+      0%,
+      92%,
+      100% {
+        transform: scaleY(1);
+      }
+
+      95% {
+        transform: scaleY(0.08);
+      }
+    }
+
+    /* Cheek blush pulse */
+    .blush {
+      animation: blushPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes blushPulse {
+
+      0%,
+      100% {
+        opacity: 0.55;
+      }
+
+      50% {
+        opacity: 0.9;
+      }
+    }
+
+    /* Heart above bear */
+    .bear-heart {
+      position: absolute;
+      top: -18px;
+      right: -8px;
+      font-size: 1.8rem;
+      animation: heartBeat 1.2s ease-in-out infinite;
+      filter: drop-shadow(0 2px 6px rgba(255, 50, 100, 0.5));
+    }
+
+    @keyframes heartBeat {
+
+      0%,
+      100% {
+        transform: scale(1);
+      }
+
+      30% {
+        transform: scale(1.25);
+      }
+
+      60% {
+        transform: scale(0.95);
+      }
+    }
+
+    /* ── Typography ── */
+    .title {
+      font-family: 'Pacifico', cursive;
+      font-size: clamp(1.7rem, 6vw, 2.5rem);
+      color: #c0334e;
+      margin-bottom: 8px;
+      line-height: 1.35;
+      padding-bottom: 6px;
+      text-shadow: 0 2px 8px rgba(200, 50, 80, 0.2);
+    }
+
+    .subtitle {
+      font-size: 0.95rem;
+      color: #d96b85;
+      font-weight: 600;
+      margin-bottom: 28px;
+      letter-spacing: 0.03em;
+    }
+
+    /* ── Button Group: Clean, Balanced Symmetrical Row ── */
+    .btn-group {
+      display: flex;
+      flex-direction: row;
+      gap: 20px;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      min-height: 56px;
+      margin: 8px auto 0;
+    }
+
+    .btn {
+      border: none;
+      cursor: pointer;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800;
+      border-radius: 50px;
+      letter-spacing: 0.02em;
+      user-select: none;
+      white-space: nowrap;
+      flex-shrink: 0;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      box-sizing: border-box;
+      height: 52px;
+    }
+
+    /* YES button */
+    .btn-yes {
+      background: linear-gradient(135deg, #ff6b8a, #e63368);
+      color: #fff;
+      font-size: 1.25rem;
+      padding: 0 40px;
+      box-shadow:
+        0 6px 20px rgba(230, 51, 104, 0.45),
+        0 2px 6px rgba(230, 51, 104, 0.3);
+      animation: yesGlow 2s ease-in-out infinite;
+      position: relative;
+      z-index: 50;
+      border-radius: var(--yes-radius, 50px);
+      transform: translate(var(--yes-tx, 0px), var(--yes-ty, 0px)) scale(var(--yes-scale-x, var(--yes-scale, 1)), var(--yes-scale-y, var(--yes-scale, 1)));
+      transform-origin: center center;
+      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+        border-radius 0.35s ease,
+        box-shadow 0.35s ease;
+      will-change: transform, border-radius;
+    }
+
+    /* Inner text container: Keeps text readable, sharp, and perfectly proportioned on all screens */
+    .btn-yes-text {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      white-space: nowrap;
+      transform-origin: center center;
+      transform: scale(var(--text-scale-x, 1), var(--text-scale-y, 1));
+      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+      pointer-events: none;
+      letter-spacing: 0.02em;
+      text-shadow: 0 2px 10px rgba(180, 20, 60, 0.45);
+      will-change: transform;
+    }
+
+    @keyframes yesGlow {
+
+      0%,
+      100% {
+        box-shadow: 0 6px 20px rgba(230, 51, 104, 0.45), 0 2px 6px rgba(230, 51, 104, 0.3);
+      }
+
+      50% {
+        box-shadow: 0 8px 32px rgba(230, 51, 104, 0.7), 0 2px 6px rgba(230, 51, 104, 0.4);
+      }
+    }
+
+    .btn-yes:hover {
+      filter: brightness(1.08);
+    }
+
+    .btn-yes:active {
+      filter: brightness(0.95);
+    }
+
+    /* Single No button: 100% solid, never fades */
+    .btn-no {
+      background: rgba(255, 255, 255, 0.9);
+      color: #c0607a;
+      font-size: 1.05rem;
+      padding: 0 34px;
+      border: 2px solid rgba(192, 96, 122, 0.45);
+      box-shadow: 0 4px 14px rgba(192, 96, 122, 0.16);
+      opacity: 1 !important;
+      position: relative;
+      z-index: 60;
+    }
+
+    .btn-no:hover {
+      filter: brightness(0.96);
+    }
+
+    .btn-no:active {
+      filter: brightness(0.92);
+    }
+
+    /* ── Confetti Canvas ── */
+    #confetti-canvas {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 20;
+    }
+
+    /* ════════════════════════════════════════════
+       CELEBRATION THEME
+    ════════════════════════════════════════════ */
+
+    /* Body morphs to bright sunny celebratory gradient */
+    body.celebrating {
+      background: linear-gradient(135deg, #fff176 0%, #ffcc02 25%, #ff8c42 55%, #ff5e78 100%);
+      transition: background 1.2s ease;
+    }
+
+    /* Card brightens and expands */
+    body.celebrating .card {
+      background: rgba(255, 255, 255, 0.72);
+      max-width: 520px;
+      box-shadow:
+        0 0 0 6px rgba(255, 200, 0, 0.35),
+        0 12px 60px rgba(255, 140, 0, 0.35),
+        inset 0 1px 0 rgba(255, 255, 255, 0.95);
+      animation: celebCardPop 0.65s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+    }
+
+    @keyframes celebCardPop {
+      from {
+        transform: scale(0.8);
+        opacity: 0;
+      }
+
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    /* ── Celebration Response Panel ── */
+    #yes-response {
+      display: none;
+    }
+
+    #yes-response.visible {
+      display: block;
+      animation: fadeSlideIn 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+    }
+
+    @keyframes fadeSlideIn {
+      from {
+        opacity: 0;
+        transform: scale(0.7) translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+    }
+
+    /* Centered container for bear + orbiting stars */
+    .celeb-bear-container {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 200px;
+      height: 200px;
+      margin: 0 auto 16px;
+    }
+
+    /* Dancing bear (celebration version) */
+    .celeb-bear-wrap {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      animation: bearDance 0.55s ease-in-out infinite alternate;
+      transform-origin: center bottom;
+      z-index: 2;
+    }
+
+    @keyframes bearDance {
+      0% {
+        transform: rotate(-10deg) translateY(0);
+      }
+
+      100% {
+        transform: rotate(10deg) translateY(-12px);
+      }
+    }
+
+    /* Orbiting star ring: precisely centered around the dancing bear */
+    .star-ring {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 0;
+      height: 0;
+      pointer-events: none;
+      z-index: 3;
+    }
+
+    .star-ring .star {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      font-size: 1.4rem;
+      user-select: none;
+      animation: orbitStar linear infinite;
+    }
+
+    @keyframes orbitStar {
+      from {
+        transform: translate(-50%, -50%) rotate(var(--start)) translateX(95px) rotate(calc(-1 * var(--start)));
+      }
+
+      to {
+        transform: translate(-50%, -50%) rotate(calc(var(--start) + 360deg)) translateX(95px) rotate(calc(-1 * (var(--start) + 360deg)));
+      }
+    }
+
+    /* Shimmer message title with generous breathing room for descenders like "y" */
+    .celeb-title {
+      font-family: 'Pacifico', cursive;
+      font-size: clamp(1.9rem, 7vw, 2.8rem);
+      background: linear-gradient(90deg, #e63368, #ff8c00, #e63368, #ff5e78, #ff8c00);
+      background-size: 300% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: shimmerText 2.5s linear infinite;
+      line-height: 1.5;
+      padding: 6px 14px 20px;
+      margin-bottom: 2px;
+      display: inline-block;
+      overflow: visible;
+    }
+
+    @keyframes shimmerText {
+      0% {
+        background-position: 0% center;
+      }
+
+      100% {
+        background-position: 300% center;
+      }
+    }
+
+    /* Sub-message */
+    .celeb-sub {
+      font-size: 1.05rem;
+      color: #c0334e;
+      font-weight: 700;
+      margin-bottom: 18px;
+      line-height: 1.6;
+    }
+
+    /* Sparkle badges row */
+    .celeb-badges {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 16px;
+    }
+
+    .celeb-badge {
+      background: linear-gradient(135deg, #ff6b8a, #ffcc02);
+      color: #fff;
+      font-weight: 800;
+      font-size: 0.85rem;
+      padding: 6px 16px;
+      border-radius: 50px;
+      box-shadow: 0 3px 12px rgba(255, 100, 80, 0.35);
+      animation: badgePop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+    }
+
+    .celeb-badge:nth-child(1) {
+      animation-delay: 0.2s;
+    }
+
+    .celeb-badge:nth-child(2) {
+      animation-delay: 0.35s;
+    }
+
+    .celeb-badge:nth-child(3) {
+      animation-delay: 0.5s;
+    }
+
+    @keyframes badgePop {
+      from {
+        transform: scale(0) rotate(-15deg);
+        opacity: 0;
+      }
+
+      to {
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+      }
+    }
+
+    /* Floating sparkles */
+    .sparkle {
+      position: fixed;
+      pointer-events: none;
+      z-index: 25;
+      animation: sparkleFly linear forwards;
+      font-size: 1.6rem;
+    }
+
+    @keyframes sparkleFly {
+      0% {
+        transform: translateY(0) scale(1) rotate(0deg);
+        opacity: 1;
+      }
+
+      100% {
+        transform: translateY(-55vh) scale(0.3) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    /* Ripple on card click */
+    .ripple-overlay {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at center, rgba(255, 255, 120, 0.55) 0%, transparent 70%);
+      z-index: 15;
+      pointer-events: none;
+      animation: rippleFade 0.9s ease-out forwards;
+    }
+
+    @keyframes rippleFade {
+      from {
+        opacity: 1;
+        transform: scale(0.2);
+      }
+
+      to {
+        opacity: 0;
+        transform: scale(3);
+      }
+    }
+
+    /* ── Subtle Watermark ── */
+    .watermark {
+      position: fixed;
+      bottom: 14px;
+      right: 18px;
+      z-index: 5;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #b84362;
+      opacity: 0.28;
+      user-select: none;
+      pointer-events: none;
+      transition: opacity 0.5s ease, color 0.5s ease;
+    }
+
+    body.celebrating .watermark {
+      color: #9c3b1a;
+      opacity: 0.25;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Confetti Canvas -->
+  <canvas id="confetti-canvas"></canvas>
+
+  <!-- Floating hearts background -->
+  <div class="hearts-bg" id="hearts-bg"></div>
+
+  <!-- Main Card -->
+  <div class="card" id="main-card">
+
+    <!-- Bear Character (SVG) -->
+    <div class="bear-wrap" id="question-bear">
+      <span class="bear-heart">💗</span>
+      <svg class="bear-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <!-- Ears -->
+        <circle cx="58" cy="60" r="28" fill="#f4a0b0" />
+        <circle cx="142" cy="60" r="28" fill="#f4a0b0" />
+        <circle cx="58" cy="60" r="16" fill="#ffcdd7" />
+        <circle cx="142" cy="60" r="16" fill="#ffcdd7" />
+        <!-- Head -->
+        <ellipse cx="100" cy="108" rx="68" ry="64" fill="#f4a0b0" />
+        <!-- Muzzle -->
+        <ellipse cx="100" cy="128" rx="30" ry="22" fill="#ffcdd7" />
+        <!-- Eyes -->
+        <g class="bear-eye" style="transform-origin: 82px 102px;">
+          <circle cx="82" cy="102" r="10" fill="#3d2016" />
+          <circle cx="86" cy="98" r="3.5" fill="white" />
+        </g>
+        <g class="bear-eye" style="transform-origin: 118px 102px;">
+          <circle cx="118" cy="102" r="10" fill="#3d2016" />
+          <circle cx="122" cy="98" r="3.5" fill="white" />
+        </g>
+        <!-- Nose -->
+        <ellipse cx="100" cy="120" rx="8" ry="5.5" fill="#c05070" />
+        <!-- Smile -->
+        <path d="M88 132 Q100 144 112 132" stroke="#c05070" stroke-width="3" fill="none" stroke-linecap="round" />
+        <!-- Blush -->
+        <ellipse class="blush" cx="66" cy="118" rx="14" ry="9" fill="#ff8fab" opacity="0.55" />
+        <ellipse class="blush" cx="134" cy="118" rx="14" ry="9" fill="#ff8fab" opacity="0.55" />
+        <!-- Body -->
+        <ellipse cx="100" cy="185" rx="52" ry="38" fill="#f4a0b0" />
+        <!-- Arms -->
+        <ellipse cx="54" cy="172" rx="20" ry="13" fill="#f4a0b0" transform="rotate(-20 54 172)" />
+        <ellipse cx="146" cy="172" rx="20" ry="13" fill="#f4a0b0" transform="rotate(20 146 172)" />
+        <!-- Belly -->
+        <ellipse cx="100" cy="188" rx="32" ry="22" fill="#ffcdd7" />
+        <!-- Little heart on belly -->
+        <text x="92" y="196" font-size="20" fill="#e63368">♥</text>
+      </svg>
+    </div>
+
+    <!-- Main question content -->
+    <div id="question-section">
+      <h1 class="title">Do you like me? 🌸</h1>
+      <p class="subtitle">Your answer means the whole world~ 🐻💕</p>
+      <!-- Buttons placed cleanly side-by-side in a row without centering or overlapping -->
+      <div class="btn-group">
+        <button class="btn btn-yes" id="yes-btn" onclick="onYes()"><span class="btn-yes-text" id="yes-btn-text">Yes!
+            💖</span></button>
+        <button class="btn btn-no" id="no-btn">No 🙈</button>
+      </div>
+    </div>
+
+    <!-- Yes Response — celebration panel -->
+    <div id="yes-response">
+
+      <!-- Centered bear + orbiting stars container -->
+      <div class="celeb-bear-container">
+
+        <!-- Orbiting star ring: precisely centered around the dancing bear -->
+        <div class="star-ring">
+          <span class="star" style="--start:0deg;   animation-duration:3.2s;">⭐</span>
+          <span class="star" style="--start:60deg;  animation-duration:3.2s;">✨</span>
+          <span class="star" style="--start:120deg; animation-duration:3.2s;">🌟</span>
+          <span class="star" style="--start:180deg; animation-duration:3.2s;">💫</span>
+          <span class="star" style="--start:240deg; animation-duration:3.2s;">⭐</span>
+          <span class="star" style="--start:300deg; animation-duration:3.2s;">✨</span>
+        </div>
+
+        <!-- Single dancing celebration bear -->
+        <div class="celeb-bear-wrap">
+          <svg width="140" height="148" viewBox="0 0 200 215" xmlns="http://www.w3.org/2000/svg"
+            style="filter:drop-shadow(0 8px 20px rgba(255,140,0,0.35));">
+            <!-- Ears -->
+            <circle cx="58" cy="60" r="28" fill="#f4a0b0" />
+            <circle cx="142" cy="60" r="28" fill="#f4a0b0" />
+            <circle cx="58" cy="60" r="16" fill="#ffcdd7" />
+            <circle cx="142" cy="60" r="16" fill="#ffcdd7" />
+            <!-- Party hat -->
+            <polygon points="100,4 72,58 128,58" fill="#ff5e78" />
+            <polygon points="100,4 72,58 128,58" fill="url(#hatStripe)" opacity="0.6" />
+            <defs>
+              <pattern id="hatStripe" patternUnits="userSpaceOnUse" width="8" height="8" patternTransform="rotate(60)">
+                <rect width="4" height="8" fill="#ffcc02" />
+              </pattern>
+            </defs>
+            <circle cx="100" cy="4" r="6" fill="#ffcc02" />
+            <!-- Head -->
+            <ellipse cx="100" cy="112" rx="68" ry="62" fill="#f4a0b0" />
+            <!-- Muzzle -->
+            <ellipse cx="100" cy="132" rx="30" ry="22" fill="#ffcdd7" />
+            <!-- Happy ^^ eyes -->
+            <path d="M74 102 Q82 94 90 102" stroke="#3d2016" stroke-width="4" fill="none" stroke-linecap="round" />
+            <path d="M110 102 Q118 94 126 102" stroke="#3d2016" stroke-width="4" fill="none" stroke-linecap="round" />
+            <!-- Nose -->
+            <ellipse cx="100" cy="124" rx="8" ry="5.5" fill="#c05070" />
+            <!-- Big smile -->
+            <path d="M84 138 Q100 154 116 138" stroke="#c05070" stroke-width="3.5" fill="none" stroke-linecap="round" />
+            <!-- Blush (extra bright) -->
+            <ellipse cx="66" cy="122" rx="16" ry="10" fill="#ff6b8a" opacity="0.7" />
+            <ellipse cx="134" cy="122" rx="16" ry="10" fill="#ff6b8a" opacity="0.7" />
+            <!-- Body -->
+            <ellipse cx="100" cy="192" rx="52" ry="36" fill="#f4a0b0" />
+            <!-- Arms raised in celebration -->
+            <ellipse cx="44" cy="164" rx="20" ry="13" fill="#f4a0b0" transform="rotate(-55 44 164)" />
+            <ellipse cx="156" cy="164" rx="20" ry="13" fill="#f4a0b0" transform="rotate(55 156 164)" />
+            <!-- Belly -->
+            <ellipse cx="100" cy="194" rx="32" ry="22" fill="#ffcdd7" />
+            <!-- Confetti on belly -->
+            <text x="86" y="202" font-size="22" fill="#ff5e78">🎉</text>
+          </svg>
+        </div>
+
+      </div>
+
+      <!-- Shimmer message -->
+      <h1 class="celeb-title">I like you too! ❤️</h1>
+      <p class="celeb-sub">
+        You just made this little bear<br>
+        the <em>happiest</em> bear in the whole world! 🌍💕<br>
+        <span style="font-size:1.4rem;">🎊 🥳 🎈</span>
+      </p>
+
+      <!-- Fun badges -->
+      <div class="celeb-badges">
+        <span class="celeb-badge">💖 Best Ever</span>
+        <span class="celeb-badge">🌟 So Cute</span>
+        <span class="celeb-badge">🎉 Yay!!!</span>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Watermark -->
+  <div class="watermark">Stib</div>
+
+  <script>
+    /* ══════════════════════════════════════════════
+       1. Floating background hearts
+    ══════════════════════════════════════════════ */
+    const heartsEl = document.getElementById('hearts-bg');
+    const heartEmojis = ['💕', '💖', '💗', '💝', '🌸', '💞', '❤️', '🩷', '💓'];
+
+    function spawnHeart() {
+      const el = document.createElement('div');
+      el.className = 'heart-float';
+      el.textContent = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
+      el.style.left = Math.random() * 100 + 'vw';
+      el.style.fontSize = (1 + Math.random() * 1.8) + 'rem';
+      const dur = 6 + Math.random() * 8;
+      const del = Math.random() * 3;
+      el.style.animationDuration = dur + 's';
+      el.style.animationDelay = del + 's';
+      heartsEl.appendChild(el);
+      setTimeout(() => el.remove(), (dur + del) * 1000 + 200);
+    }
+
+    for (let i = 0; i < 20; i++) {
+      setTimeout(spawnHeart, i * 300);
+    }
+    setInterval(spawnHeart, 600);
+
+
+    /* ══════════════════════════════════════════════
+       2. Single "No" button — instant teleport,
+          never fades (100% solid), & adaptive
+          full-screen "Yes" button growth
+    ══════════════════════════════════════════════ */
+    const noBtn = document.getElementById('no-btn');
+    const yesBtn = document.getElementById('yes-btn');
+    const btnGroup = document.querySelector('.btn-group');
+
+    let noHoverCount = 0;
+    let lastTeleportTime = 0;
+    let baseBtnWidth = 0;
+    let baseBtnHeight = 0;
+
+    function getBaseDimensions() {
+      if (!baseBtnWidth || !baseBtnHeight) {
+        baseBtnWidth = yesBtn.offsetWidth || 156;
+        baseBtnHeight = yesBtn.offsetHeight || 52;
+      }
+      return { baseW: baseBtnWidth, baseH: baseBtnHeight };
+    }
+
+    function updateYesGrowth() {
+      if (noHoverCount <= 0) return;
+
+      const vw = window.innerWidth;
+      const vh = window.innerHeight;
+      const { baseW, baseH } = getBaseDimensions();
+
+      // The unscaled position of the button in the viewport (btn-group remains in natural layout)
+      const groupRect = btnGroup.getBoundingClientRect();
+      const unscaledCenterX = groupRect.left + groupRect.width / 2;
+      const unscaledCenterY = groupRect.top + groupRect.height / 2;
+
+      // Full screen target dimensions (with slight buffer to avoid edge rounding gaps)
+      const fullW = vw + 6;
+      const fullH = vh + 6;
+
+      // Normalization: Reaches 100% full screen by dodge #7
+      const maxSteps = 7;
+      const p = Math.min(noHoverCount / maxSteps, 1);
+
+      // In early steps, preserve the cute pill button feel; as p increases, morph to match screen
+      // Blend between natural proportional growth and screen-filling target
+      const s = 1 + 2.4 * p;
+      const naturalW = baseW * s;
+      const naturalH = baseH * s;
+
+      // Morph weight towards full-screen target
+      const blend = Math.pow(p, 1.8);
+      const targetW = naturalW * (1 - blend) + fullW * blend;
+      const targetH = naturalH * (1 - blend) + fullH * blend;
+
+      // Scale factors for X and Y
+      const scaleX = targetW / baseW;
+      const scaleY = targetH / baseH;
+
+      // Translation towards viewport center so it fills the screen symmetrically
+      const centerT = Math.pow(p, 1.2);
+      const tx = ((vw / 2) - unscaledCenterX) * centerT;
+      const ty = ((vh / 2) - unscaledCenterY) * centerT;
+
+      // Border radius: transitions from 50px pill to 0px (full-screen rectangle)
+      // Begins squaring out when filling over 60% of screen, becomes 0px at full screen
+      const radiusProgress = Math.max(0, (p - 0.5) / 0.5);
+      const radius = Math.round(50 * (1 - Math.pow(radiusProgress, 2)));
+
+      // Controlled text scale: Always readable, never clipped, perfectly sized for device
+      const isPhone = vw < 600;
+      const maxTextScale = isPhone ? 2.1 : 2.8;
+      const currentTextScale = 1 + (maxTextScale - 1) * Math.min(p * 1.15, 1);
+
+      // Counter-scale so text remains 100% readable without distortion
+      const textScaleX = currentTextScale / scaleX;
+      const textScaleY = currentTextScale / scaleY;
+
+      yesBtn.style.setProperty('--yes-scale-x', scaleX.toFixed(4));
+      yesBtn.style.setProperty('--yes-scale-y', scaleY.toFixed(4));
+      yesBtn.style.setProperty('--yes-scale', scaleX.toFixed(4));
+      yesBtn.style.setProperty('--yes-tx', tx.toFixed(2) + 'px');
+      yesBtn.style.setProperty('--yes-ty', ty.toFixed(2) + 'px');
+      yesBtn.style.setProperty('--yes-radius', radius + 'px');
+      yesBtn.style.setProperty('--text-scale-x', textScaleX.toFixed(5));
+      yesBtn.style.setProperty('--text-scale-y', textScaleY.toFixed(5));
+
+      // Make sure Yes button appears above card as it grows
+      yesBtn.style.zIndex = '100';
+    }
+
+    function teleportNo() {
+      const now = Date.now();
+      if (now - lastTeleportTime < 50) return;
+      lastTeleportTime = now;
+
+      // Cache base dimensions before button is altered
+      getBaseDimensions();
+
+      // Move to document.body on first dodge so it can fly freely across the viewport
+      if (noBtn.parentElement !== document.body) {
+        document.body.appendChild(noBtn);
+      }
+      noBtn.style.position = 'fixed';
+      noBtn.style.zIndex = '9999';
+
+      const bw = noBtn.offsetWidth || 100;
+      const bh = noBtn.offsetHeight || 44;
+      const pad = 16;
+
+      const maxX = window.innerWidth - bw - pad;
+      const maxY = window.innerHeight - bh - pad;
+
+      let nx, ny, attempts = 0;
+      const yRect = yesBtn.getBoundingClientRect();
+      const yCX = yRect.left + yRect.width / 2;
+      const yCY = yRect.top + yRect.height / 2;
+
+      // Safe distance to dodge away
+      const minDistance = Math.min(180, window.innerWidth / 3);
+
+      do {
+        nx = pad + Math.random() * (maxX - pad);
+        ny = pad + Math.random() * (maxY - pad);
+        attempts++;
+        const dx = nx + bw / 2 - yCX;
+        const dy = ny + bh / 2 - yCY;
+        if (Math.sqrt(dx * dx + dy * dy) > minDistance || attempts > 30) break;
+      } while (true);
+
+      noBtn.style.left = nx + 'px';
+      noBtn.style.top = ny + 'px';
+
+      // ── Adaptive Exponential Growth for Yes button ──
+      noHoverCount++;
+      updateYesGrowth();
+
+      // Playful texts (strictly NO opacity change)
+      if (noHoverCount >= 3 && noHoverCount < 6) noBtn.textContent = 'Noooo~ 🙈';
+      if (noHoverCount >= 6 && noHoverCount < 9) noBtn.textContent = 'Please stop~ 😢';
+      if (noHoverCount >= 9) noBtn.textContent = 'Just say Yes! 💖';
+    }
+
+    // Teleport on hover and touch
+    noBtn.addEventListener('mouseenter', teleportNo);
+    noBtn.addEventListener('touchstart', (e) => {
+      e.preventDefault();
+      teleportNo();
+    }, { passive: false });
+    noBtn.addEventListener('click', teleportNo);
+
+    // Optional URL param for instant testing: ?steps=N
+    const urlParams = new URLSearchParams(window.location.search);
+    const testSteps = parseInt(urlParams.get('steps'), 10);
+    if (!isNaN(testSteps) && testSteps > 0) {
+      for (let i = 0; i < testSteps; i++) {
+        teleportNo();
+      }
+    }
+
+
+    /* ══════════════════════════════════════════════
+       3. Yes! → Full celebration sequence
+    ══════════════════════════════════════════════ */
+    function onYes() {
+      // ── 1. Flash ripple overlay ──
+      const ripple = document.createElement('div');
+      ripple.className = 'ripple-overlay';
+      document.body.appendChild(ripple);
+      setTimeout(() => ripple.remove(), 900);
+
+      // ── 2. Switch body to celebration theme ──
+      document.body.classList.add('celebrating');
+
+      // ── 3. Hide question section, question bear & No button ──
+      document.getElementById('question-section').style.display = 'none';
+      document.getElementById('question-bear').style.display = 'none';
+      noBtn.style.display = 'none';
+
+      // ── 4. Show celebration response with single dancing bear ──
+      const res = document.getElementById('yes-response');
+      res.style.display = 'block';
+      requestAnimationFrame(() => res.classList.add('visible'));
+
+      // ── 5. Burst sparkles from center ──
+      const sparkleEmojis = ['✨', '⭐', '💛', '🌟', '💫', '🎊', '🎉', '🎈', '💥', '🌸'];
+      for (let i = 0; i < 22; i++) {
+        setTimeout(() => {
+          const s = document.createElement('div');
+          s.className = 'sparkle';
+          s.textContent = sparkleEmojis[Math.floor(Math.random() * sparkleEmojis.length)];
+          s.style.left = (15 + Math.random() * 70) + 'vw';
+          s.style.bottom = (Math.random() * 25) + 'vh';
+          s.style.fontSize = (1 + Math.random() * 1.8) + 'rem';
+          s.style.animationDuration = (1.2 + Math.random() * 1.5) + 's';
+          document.body.appendChild(s);
+          setTimeout(() => s.remove(), 3000);
+        }, i * 60);
+      }
+
+      // ── 6. Flood of floating hearts ──
+      for (let i = 0; i < 40; i++) setTimeout(spawnHeart, i * 60);
+
+      // ── 7. Colorful confetti (two waves) ──
+      launchConfetti();
+      setTimeout(launchConfetti, 1200);
+
+      // ── 8. Title tab update ──
+      document.title = '🎉 I Like You Too! 💕';
+    }
+
+    /* ── Confetti ── */
+    const canvas = document.getElementById('confetti-canvas');
+    const ctx = canvas.getContext('2d');
+    let pieces = [];
+    let rafId = null;
+
+    const COLORS = [
+      '#ff6b8a', '#ffb3c6', '#e63368', '#ffccd5',
+      '#ff99b5', '#ffd6e0', '#c9184a', '#ff85a1',
+      '#ffcc02', '#ff8c42', '#fff176', '#ffd54f',
+      '#69f0ae', '#40c4ff', '#ce93d8', '#fff9c4'
+    ];
+
+    function onResize() {
+      resizeCanvas();
+      updateYesGrowth();
+    }
+
+    window.addEventListener('resize', onResize);
+    window.addEventListener('orientationchange', () => setTimeout(onResize, 100));
+
+    function launchConfetti() {
+      resizeCanvas();
+      const count = 220;
+      for (let i = 0; i < count; i++) {
+        pieces.push({
+          x: Math.random() * canvas.width,
+          y: -20 - Math.random() * 300,
+          w: 5 + Math.random() * 11,
+          h: 9 + Math.random() * 15,
+          color: COLORS[Math.floor(Math.random() * COLORS.length)],
+          rot: Math.random() * Math.PI * 2,
+          vx: (Math.random() - 0.5) * 5,
+          vy: 1.5 + Math.random() * 5,
+          vr: (Math.random() - 0.5) * 0.22,
+          wobble: Math.random() * Math.PI * 2,
+          shape: ['heart', 'rect', 'circle'][Math.floor(Math.random() * 3)],
+          alpha: 1,
+        });
+      }
+      if (!rafId) animateConfetti();
+    }
+
+    function drawHeart(cx, cy, size) {
+      ctx.beginPath();
+      ctx.moveTo(cx, cy + size * 0.3);
+      ctx.bezierCurveTo(cx, cy, cx - size, cy, cx - size, cy - size * 0.5);
+      ctx.bezierCurveTo(cx - size, cy - size * 1.1, cx, cy - size * 1.1, cx, cy - size * 0.6);
+      ctx.bezierCurveTo(cx, cy - size * 1.1, cx + size, cy - size * 1.1, cx + size, cy - size * 0.5);
+      ctx.bezierCurveTo(cx + size, cy, cx, cy, cx, cy + size * 0.3);
+      ctx.closePath();
+      ctx.fill();
+    }
+
+    function animateConfetti() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      let alive = false;
+      for (const p of pieces) {
+        p.wobble += 0.04;
+        p.x += p.vx + Math.sin(p.wobble) * 0.8;
+        p.y += p.vy;
+        p.rot += p.vr;
+        p.vy += 0.07;
+        if (p.y > canvas.height * 0.75) {
+          p.alpha = Math.max(0, p.alpha - 0.012);
+        }
+        if (p.y > canvas.height + 40) p.alpha = 0;
+        if (p.alpha <= 0) continue;
+        alive = true;
+
+        ctx.save();
+        ctx.globalAlpha = p.alpha;
+        ctx.fillStyle = p.color;
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.rot);
+
+        if (p.shape === 'heart') {
+          drawHeart(0, 0, p.w * 0.65);
+        } else if (p.shape === 'circle') {
+          ctx.beginPath();
+          ctx.arc(0, 0, p.w * 0.55, 0, Math.PI * 2);
+          ctx.fill();
+        } else {
+          ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+        }
+        ctx.restore();
+      }
+      if (alive) {
+        rafId = requestAnimationFrame(animateConfetti);
+      } else {
+        rafId = null;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+      }
+    }
+  </script>
+</body>
+
+</html>
